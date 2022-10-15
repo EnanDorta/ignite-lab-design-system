@@ -1,13 +1,13 @@
-import { InputHTMLAttributes, ReactNode } from 'react'
-import { Slot } from '@radix-ui/react-slot';
+import { InputHTMLAttributes, ReactNode } from 'react';
+import { Slot, SlotProps } from '@radix-ui/react-slot';
 
 export interface TextInputRootProps {
   children: ReactNode;
 }
 
-const TextInputRoot = ({ children }: TextInputRootProps) => {
+function TextInputRoot({ children }: TextInputRootProps) {
   return (
-    <div className="flex items-center gap-3 py-4 px-3 rounded bg-gray-800 w-full outline-none focus:ring-2 ring-cyan-500">
+    <div className="flex items-center gap-3 h-12 py-4 px-3 rounded bg-gray-800 w-full focus-within:ring-2 ring-cyan-300">
       {children}
     </div>
   )
@@ -15,25 +15,11 @@ const TextInputRoot = ({ children }: TextInputRootProps) => {
 
 TextInputRoot.displayName = 'TextInput.Root'
 
-export interface TextInputInputProps extends InputHTMLAttributes<HTMLInputElement> {
-}
-
-const TextInputInput = (props: TextInputInputProps) => {
-  return (
-    <input
-      className="bg-transparent flex-1 text-gray-100 text-xs placeholder:text-gray-400"
-      {...props}
-    />
-  )
-}
-
-TextInputInput.displayName = 'TextInput.Input'
-
-export interface TextInputIconProps {
+export interface TextInputIconProps extends SlotProps {
   children: ReactNode;
 }
 
-const TextInputIcon = ({ children }: TextInputIconProps) => {
+function TextInputIcon({ children }: TextInputIconProps) {
   return (
     <Slot className="w-6 h-6 text-gray-400">
       {children}
@@ -43,10 +29,32 @@ const TextInputIcon = ({ children }: TextInputIconProps) => {
 
 TextInputIcon.displayName = 'TextInput.Icon'
 
+function TextInputIconTwo({ children, ...props }: TextInputIconProps) {
+  return (
+    <Slot className="w-6 h-6 text-gray-400" {...props}>
+      {children}
+    </Slot>
+  )
+}
+
+TextInputIconTwo.displayName = 'TextInput.IconTwo'
+
+export interface TextInputInputProps extends InputHTMLAttributes<HTMLInputElement> {}
+
+function TextInputInput({ ...props }: TextInputInputProps) {
+  return (
+    <input 
+      className="bg-transparent flex-1 text-gray-100 text-xs placeholder:text-gray-400 outline-none"
+      {...props}
+    />
+  )
+}
+
+TextInputInput.displayName = 'TextInput.Input'
+
 export const TextInput = {
   Root: TextInputRoot,
   Input: TextInputInput,
-  Icon: TextInputIcon
+  Icon: TextInputIcon,
+  IconTwo: TextInputIconTwo,
 }
-
-// export default TextInput
