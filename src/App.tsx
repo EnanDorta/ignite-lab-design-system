@@ -12,8 +12,6 @@ const App = () => {
 
   const [showPassword, setShowPassword] = useState(false)
 
-  console.log(showPassword)
-
   return (
     <div className='w-screen h-screen bg-gray-900 flex justify-center items-center flex-col text-gray-100'>
       <header className='flex flex-col items-center my-4'>
