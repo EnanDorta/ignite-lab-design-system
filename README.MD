@@ -10,7 +10,7 @@
 
 <h1 align="center" >Preview</h1>
 <p align="center"> 
-  <img alt="first photo" src=".github/img.png" width="100%">
+  <img alt="first photo" src=".github/img/form.png" width="100%">
 </p>
 <br>
 
